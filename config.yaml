@@ -1,0 +1,35 @@
+# Clash Verge 可用节点订阅 - 自动测试生成
+# 生成时间: 2026-10-30, 可用节点: 351 个
+
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+unified-delay: true
+tcp-concurrent: true
+external-controller: 127.0.0.1:9090
+dns:
+  enable: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  fallback:
+    - 8.8.8.8
+    - 1.1.1.1
+
+proxies:
+- name: test
+  type: http
+  server: 1.2.3.4
+  port: 8080
+
+proxy-groups:
+  - name: SELECT
+    type: select
+    proxies:
+      - DIRECT
+
+rules:
+  - MATCH,SELECT
